@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".ui.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/owner_image_size"
+        android:layout_below="@+id/toolbar"
+        android:gravity="center_vertical"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:background="#f7f8fc">
+
+        <ImageView
+            android:id="@+id/gist_image"
+            android:layout_width="@dimen/owner_image_size"
+            android:layout_height="@dimen/owner_image_size"
+            android:layout_marginRight="4dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="@dimen/element_margin"
+            android:layout_marginStart="@dimen/element_margin"
+            />
+
+        <TextView
+            android:id="@+id/gist_owner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_large"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scroll_news_detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:paddingTop="@dimen/owner_image_size"
+        android:layout_below="@id/toolbar"
+        android:clipToPadding="false">
+
+        <WebView
+            android:id="@+id/web_view_news_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none" />
+
+    </ScrollView>
+
+    <include layout="@layout/toolbar" android:id="@+id/toolbar" />
+
+</RelativeLayout>

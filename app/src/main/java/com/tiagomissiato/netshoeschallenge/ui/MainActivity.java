@@ -1,10 +1,12 @@
 package com.tiagomissiato.netshoeschallenge.ui;
 
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -31,6 +33,8 @@ import retrofit.client.Response;
 
 public class MainActivity extends AppCompatActivity {
 
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
     @Bind(R.id.gist_list)
     public RecyclerView mGistList;
     @Bind(R.id.no_data)
@@ -65,7 +69,18 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             if(adapter == null) {
-                adapter = new GistAdapter(MainActivity.this, mItems);
+                adapter = new GistAdapter(MainActivity.this, mItems, new GistAdapter.OnGistClickListener() {
+                    @Override
+                    public void onClicked(int position) {
+                        Bundle bnd = new Bundle(1);
+                        bnd.putSerializable(GistDetailActivity.BUNDLE_GIST, mItems.get(position));
+
+                        Intent gistIntent = new Intent(MainActivity.this, GistDetailActivity.class);
+                        gistIntent.putExtras(bnd);
+
+                        startActivity(gistIntent);
+                    }
+                });
                 mGistList.setAdapter(adapter);
             } else {
                 adapter.notifyDataSetChanged();
@@ -82,6 +97,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
+
+        //Set up toolbar
+        setSupportActionBar(toolbar);
 
         //Recycler view configuration
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);

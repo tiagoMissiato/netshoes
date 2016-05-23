@@ -10,4 +10,6 @@
 
     <string name="no_result_founded">Nenhum GIST encontrado!</string>
     <string name="try_again">Tentar novamente</string>
+    <string name="title_activity_activityist_detail">ActivityistDetail</string>
+    <string name="title_activity_gist_detail">GistDetailActivity</string>
 </resources>

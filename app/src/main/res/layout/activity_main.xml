@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
+    <include layout="@layout/toolbar" android:id="@+id/toolbar"/>
+
     <include
         android:id="@+id/no_data"
         layout="@layout/no_data_founded"
@@ -16,7 +18,8 @@
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swiperefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/gist_list"

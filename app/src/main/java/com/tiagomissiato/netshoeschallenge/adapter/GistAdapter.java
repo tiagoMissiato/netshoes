@@ -28,7 +28,9 @@ public class GistAdapter extends RecyclerView.Adapter<GistAdapter.ViewHolder> {
     Context mContext;
     private List<GistItem> mItems;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    OnGistClickListener mListener;
+
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
 
         @Bind(R.id.gist_owner_img)
@@ -40,27 +42,39 @@ public class GistAdapter extends RecyclerView.Adapter<GistAdapter.ViewHolder> {
         @Bind(R.id.gist_language)
         TextView mGistLanguage;
 
+        OnGistClickListener mListener;
+
         View mView;
 
-        public ViewHolder(View v) {
+        public ViewHolder(View v, OnGistClickListener listener) {
             super(v);
 
             ButterKnife.bind(this, v);
 
             mView = v;
+            mListener = listener;
+            v.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            if(mListener != null) {
+                mListener.onClicked(getAdapterPosition());
+            }
         }
     }
 
-    public GistAdapter(Context mContext, List<GistItem> items) {
+    public GistAdapter(Context mContext, List<GistItem> items, OnGistClickListener listener) {
         this.mItems = items;
         this.mContext = mContext;
+        this.mListener = listener;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_gist, parent, false);
 
-        return new ViewHolder(layout);
+        return new ViewHolder(layout, mListener);
     }
 
     @Override
@@ -85,7 +99,6 @@ public class GistAdapter extends RecyclerView.Adapter<GistAdapter.ViewHolder> {
                         .bitmapTransform(new RoundedCornersTransformation(mContext, 30, 0, RoundedCornersTransformation.CornerType.ALL))
                         .into(holder.mGistImage);
             }
-            holder.mGistOwner.setText(item.owner.login);
         }
         holder.mGistOwner.setText(mContext.getString(R.string.gist_owner_file, ownerName, item.gist.filename));
         holder.mGistLanguage.setText(item.gist.language);
@@ -108,5 +121,12 @@ public class GistAdapter extends RecyclerView.Adapter<GistAdapter.ViewHolder> {
         return position;
     }
 
+    public void setListener(OnGistClickListener listener) {
+        this.mListener = listener;
+    }
+
+    public interface OnGistClickListener{
+        void onClicked(int position);
+    }
 
 }
