@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Netshoes Challenge</string>
+
+    <string name="anonymous">Anonymous</string>
+    <string name="gist_owner_file">%1$s / %2$s</string>
+
+    <string name="no_connection_error">Parece que você está sem internet! Por favor, verifique a sua conexão e tente novamente.</string>
+    <string name="server_error">Houve algum erro com o seu pedido.</string>
+    <string name="internal_error">Desculpe, estamos enfrentando problemas técnicos. Por favor, tente novamente mais tarde.</string>
+
+    <string name="no_result_founded">Nenhum GIST encontrado!</string>
+    <string name="try_again">Tentar novamente</string>
+</resources>

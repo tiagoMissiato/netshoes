@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/bill_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/default_margin"
+        android:textSize="@dimen/text_large"
+        android:gravity="center"
+        android:textColor="@color/item_text"
+        android:text="@string/no_result_founded"/>
+
+    <Button
+        android:id="@+id/try_again"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:padding="@dimen/default_margin"
+        android:background="@drawable/button"
+        android:text="@string/try_again"
+        android:textColor="@color/netshoes"
+        android:layout_margin="@dimen/element_margin"/>
+
+</LinearLayout>
